@@ -1,0 +1,91 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0d0b08;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#wrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #1c160f 0%, #0d0b08 70%);
+}
+
+canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+noscript {
+  position: absolute;
+  color: #f0e0c0;
+  font: 16px sans-serif;
+}
+
+/* ---------- Touch-Steuerung (nur auf Touchgeräten im Spiel) ---------- */
+#touch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: none;
+}
+body.touch.playing #touch { display: block; }
+
+.tbtn {
+  position: absolute;
+  pointer-events: auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 244, 220, 0.14);
+  border: 2px solid rgba(255, 244, 220, 0.38);
+  color: rgba(255, 248, 230, 0.9);
+  font: 600 15px "Pixelify Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+.tbtn.on { background: rgba(240, 194, 74, 0.45); border-color: rgba(255, 226, 122, 0.9); }
+
+.pad {
+  position: absolute;
+  left: max(14px, env(safe-area-inset-left));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  width: 184px;
+  height: 160px;
+}
+.pad [data-act="left"] { left: 0; bottom: 48px; }
+.pad [data-act="right"] { left: 120px; bottom: 48px; }
+.tbtn.small { width: 52px; height: 52px; font-size: 13px; }
+.pad .up { left: 66px; bottom: 106px; }
+.pad .down { left: 66px; bottom: 0; opacity: 0.85; }
+
+.acts {
+  position: absolute;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  width: 170px;
+  height: 150px;
+}
+.tbtn.big { width: 76px; height: 76px; }
+.acts .jump { right: 0; bottom: 0; }
+.acts .shoot { right: 88px; bottom: 34px; }
+
+.tbtn.pause {
+  top: max(10px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+}
