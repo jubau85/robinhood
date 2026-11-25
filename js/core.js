@@ -118,7 +118,8 @@ const Input = (() => {
 
   function readPad() {
     const r = {};
-    const pads = navigator.getGamepads ? navigator.getGamepads() : [];
+    let pads = [];
+    try { pads = navigator.getGamepads ? navigator.getGamepads() || [] : []; } catch (e) { pads = []; }
     for (const p of pads) {
       if (!p || !p.connected) continue;
       const b = (i) => !!(p.buttons[i] && p.buttons[i].pressed);

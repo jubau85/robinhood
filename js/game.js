@@ -490,8 +490,8 @@ const Game = {
 
   toggleFullscreen() {
     try {
-      if (document.fullscreenElement) document.exitFullscreen();
-      else document.documentElement.requestFullscreen();
+      const r = document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+      if (r && r.catch) r.catch(() => {});
     } catch (e) { /* nicht unterstützt */ }
   },
 
